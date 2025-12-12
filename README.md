@@ -4,9 +4,9 @@ Build your own real-time power grid frequency monitor using an ESP32 and a servo
 
 **No external sensors required** - the ESP32 picks up the 50Hz electromagnetic field from nearby mains wiring using just a short wire antenna (or even nothing at all).
 
-## What You'll Build
+## What You'll MAke
 
-A physical dial that shows the real-time frequency of your power grid:
+A collection of wires and a microcontroller with a servo connected that (when paired with a box to put it in and a dial) will show:
 - **Centre position** = 50.00 Hz (nominal)
 - **Left** = Demand > Supply
 - **Right** = Demand < Supply
