@@ -105,9 +105,20 @@ Or download as ZIP from GitHub and extract.
 
 ### 5. View Output
 
-- Click the **plug icon** in the bottom toolbar to open Serial Monitor
+You need a serial monitor to see the data. Two options:
+
+**Option A: PlatformIO's built-in monitor**
+- Click the **plug icon** in the blue status bar at the bottom
 - Or press Ctrl+Alt+S
-- You should see frequency readings like: `{"t":12345,"freq":50.0123,...}`
+
+**Option B: Serial Monitor extension (recommended)**
+1. Install "Serial Monitor" extension by Microsoft from the VS Code marketplace
+2. Click the serial monitor icon in the left sidebar (looks like a plug)
+3. Select your COM port from the dropdown
+4. Set baud rate to **115200**
+5. Click "Start Monitoring"
+
+You should see frequency readings like: `{"t":12345,"freq":50.0123,"signal":0.5}`
 
 ## How It Works
 
