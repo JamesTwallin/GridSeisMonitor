@@ -265,8 +265,6 @@ Pull requests welcome! Some ideas:
 - Support for different servo types
 - OLED/LCD display option
 - WiFi data upload
-- Web dashboard
-- Multiple antenna correlation for better accuracy
 
 ## Acknowledgements
 
