@@ -271,8 +271,8 @@ Pull requests welcome! Some ideas:
 ## Acknowledgements
 
 - Grid frequency data from [National Grid ESO](https://www.nationalgrideso.com/)
-- Elexon frequency data [Elexon] (https://bmrs.elexon.co.uk/rolling-system-frequency)
-- Inspired by various grid frequency monitoring projects [Bertrik] (https://github.com/bertrik/GridFrequency)
+- Elexon frequency data [Elexon](https://bmrs.elexon.co.uk/rolling-system-frequency)
+- Inspired by [Bertrik](https://github.com/bertrik/GridFrequency)
 
 ## License
 
