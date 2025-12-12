@@ -8,11 +8,8 @@ Build your own real-time power grid frequency monitor using an ESP32 and a servo
 
 A physical dial that shows the real-time frequency of your power grid:
 - **Centre position** = 50.00 Hz (nominal)
-- **Left** = frequency dropping (high demand on grid)
-- **Right** = frequency rising (excess generation)
-
-Grid frequency is a fascinating indicator of supply/demand balance across an entire electrical network.
-
+- **Left** = Demand > Supply
+- **Right** = Demand < Supply
 ## Parts List
 
 | Part | Approx. Cost | Notes |
