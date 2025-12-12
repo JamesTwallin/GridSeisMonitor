@@ -64,6 +64,13 @@ GPIO 34: Leave floating or attach 10-30cm wire as antenna
                     └─────────────────┘
 ```
 
+### Wiring Tips
+
+- **Use a GND pin away from 5V** - the GND pin closest to 5V can cause issues with the servo. Use one on the other side of the board
+- **Any 5V pin works** - same deal, they're all connected
+- **Servo jittering?** The servo draws a lot of current. If it jitters or resets the ESP32, power the servo from a separate 5V supply (share GND with ESP32)
+- **No signal?** Try moving closer to a wall socket or power strip - the 50Hz field is stronger near mains wiring
+
 ## Software Setup
 
 ### 1. Install VS Code + PlatformIO
@@ -120,11 +127,20 @@ Or download as ZIP from GitHub and extract.
 
 The ESP32 outputs JSON data over serial that you can log and plot.
 
-### Install Python Dependencies
+## How to Run The Python Code
+
+I've created a minimal environment with miniconda. I make a conda env:
+
+```bash
+conda create -n grid_seis python=3.12
+```
+
+and use pip to manage the packages:
 
 ```bash
 pip install -r requirements.txt
 ```
+
 
 ### Capture Data
 
@@ -162,14 +178,13 @@ Download the "Rolling System Frequency" CSV/JSON and place it in the project fol
 The ESP32 outputs JSON lines at 115200 baud:
 
 ```json
-{"t":12345,"freq":50.0123,"smoothed":50.0100,"signal":0.543}
+{"t":12345,"freq":50.0123,"signal":0.543}
 ```
 
 | Field | Description |
 |-------|-------------|
 | `t` | Timestamp (ms since boot) |
-| `freq` | Instantaneous frequency (Hz) |
-| `smoothed` | Exponentially smoothed frequency |
+| `freq` | Measured frequency (Hz) |
 | `signal` | Signal amplitude (0-1, higher = stronger pickup) |
 
 ## USB Drivers
@@ -225,10 +240,12 @@ Look at the small chip near the USB port on your board:
 ```
 GridSeisMonitor/
 ├── main/
-│   └── main.c           # Firmware source code
-├── capture.py           # Python script to log serial data
-├── plotter.py           # Python script to plot frequency data
-├── platformio.ini       # PlatformIO build configuration
+│   ├── main.c           # Firmware source code
+│   └── CMakeLists.txt   # Component build config
+├── CMakeLists.txt       # Project build config
+├── platformio.ini       # PlatformIO settings
+├── capture.py           # Log serial data to file
+├── plotter.py           # Plot frequency data
 └── requirements.txt     # Python dependencies
 ```
 

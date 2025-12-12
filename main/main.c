@@ -157,7 +157,7 @@ static float freq_to_angle(float freq)
  */
 static esp_err_t measure_frequency(float *freq_hz, float *amplitude)
 {
-    float samples[ADC_SAMPLES_1SEC];
+    static float samples[ADC_SAMPLES_1SEC];  /* Static to avoid stack overflow */
     int sample_count = 0;
 
     /* Sample at 1kHz for 1 second using oneshot ADC */
@@ -266,30 +266,19 @@ void app_main(void)
     ESP_LOGI(TAG, "Starting frequency measurement...");
     ESP_LOGI(TAG, "Range: %.2f - %.2f Hz", NOMINAL_FREQ - FREQ_RANGE, NOMINAL_FREQ + FREQ_RANGE);
 
-    /* Main loop - measure frequency every second */
-    float smoothed_freq = NOMINAL_FREQ;
-    const float freq_alpha = 0.3f;  /* Frequency smoothing factor (for logging) */
-
+    /* Main loop */
     while (1) {
         float freq, amplitude;
         esp_err_t ret = measure_frequency(&freq, &amplitude);
 
         if (ret == ESP_OK) {
-            /* Apply exponential smoothing to frequency (for logging) */
-            smoothed_freq = freq_alpha * freq + (1.0f - freq_alpha) * smoothed_freq;
+            set_servo_angle(freq_to_angle(freq));
 
-            /* Map instantaneous frequency directly to servo angle */
-            float target_angle = freq_to_angle(freq);
-            set_servo_angle(target_angle);
-
-            /* Log measurement as JSON for data capture */
             int64_t timestamp_ms = esp_timer_get_time() / 1000;
-            printf("{\"t\":%lld,\"freq\":%.4f,\"smoothed\":%.4f,\"signal\":%.3f}\n",
-                     timestamp_ms, freq, smoothed_freq, amplitude);
-        } else {
-            ESP_LOGW(TAG, "Measurement failed");
+            printf("{\"t\":%lld,\"freq\":%.4f,\"signal\":%.3f}\n",
+                   timestamp_ms, freq, amplitude);
         }
 
-        vTaskDelay(pdMS_TO_TICKS(100));  /* Short delay between measurements */
+        vTaskDelay(pdMS_TO_TICKS(100));
     }
 }
