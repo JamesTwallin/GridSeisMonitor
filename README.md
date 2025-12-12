@@ -152,18 +152,10 @@ pip install -r requirements.txt
 ### Capture Data
 
 ```bash
-# List available serial ports
-python capture.py --list
-
-# Capture from one board
-python capture.py COM3
-
-# Capture from multiple boards
-python capture.py COM3 COM4
-
-# On Linux/Mac
-python capture.py /dev/ttyUSB0
+python capture.py
 ```
+
+That's it - it auto-detects your ESP32 and logs to a timestamped file (`grid_log_YYYYMMDD_HHMMSS.jsonl`). Press Ctrl+C to stop.
 
 ### Plot Data
 
