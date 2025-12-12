@@ -166,6 +166,7 @@ This creates a graph comparing your ESP32 readings against official grid data (i
 
 UK grid frequency data is available at:
 https://www.nationalgrideso.com/data-portal/system-frequency-data
+
 More immediate frequency data:
 https://bmrs.elexon.co.uk/rolling-system-frequency
 
