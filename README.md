@@ -64,7 +64,6 @@ GPIO 34: Leave floating or attach 10-30cm wire as antenna
 ### Wiring Tips
 
 - **Use a GND pin away from 5V** - the GND pin closest to 5V can cause issues with the servo. Use one on the other side of the board
-- **Any 5V pin works** - same deal, they're all connected
 - **Servo jittering?** The servo draws a lot of current. If it jitters or resets the ESP32, power the servo from a separate 5V supply (share GND with ESP32)
 - **No signal?** Try moving closer to a wall socket or power strip - the 50Hz field is stronger near mains wiring
 
@@ -86,7 +85,7 @@ PlatformIO handles all the toolchain setup automatically - no need to install an
 ### 2. Get the Code
 
 ```bash
-git clone https://github.com/yourusername/GridSeisMonitor.git
+git clone https://github.com/JamesTwallin/GridSeisMonitor.git
 ```
 
 Or download as ZIP from GitHub and extract.
@@ -261,7 +260,7 @@ Pull requests welcome! Some ideas:
 
 - Grid frequency data from [National Grid ESO](https://www.nationalgrideso.com/)
 - Elexon frequency data [Elexon] (https://bmrs.elexon.co.uk/rolling-system-frequency)
-- Inspired by various grid frequency monitoring projects
+- Inspired by various grid frequency monitoring projects [Bertrik] (https://github.com/bertrik/GridFrequency)
 
 ## License
 
